@@ -228,6 +228,96 @@ export const projects: Project[] = [
     shot: 'muallimi.png',
     links: [],
   },
+  {
+    id: 'oynachi',
+    name: 'Oynachi',
+    tagline: 'B2B sales & ordering for glass workshops',
+    role: 'KMP Developer',
+    period: 'Nov 2025 — Present',
+    description:
+      'A Kotlin Multiplatform sales app for glass workshops — order creation, glass pricing catalogs, warehouse inventory and client management — shipped to Android and iOS from a single codebase.',
+    highlights: [
+      'Order creation with offline sync',
+      'Glass pricing catalogs & worker rates',
+      'Warehouse inventory management',
+      'ML Kit OCR capture & PDF export',
+    ],
+    tech: [
+      'Kotlin Multiplatform',
+      'Compose Multiplatform',
+      'Ktor',
+      'Koin',
+      'Room',
+      'Firebase',
+    ],
+    shots: [
+      'oynachi-1.jpg',
+      'oynachi-2.jpg',
+      'oynachi-3.jpg',
+      'oynachi-4.jpg',
+      'oynachi-5.jpg',
+    ],
+    links: [
+      {
+        label: 'App Store',
+        href: 'https://apps.apple.com/app/oynachi/id6762111876',
+        type: 'apple',
+      },
+      {
+        label: 'Google Play',
+        href: 'https://play.google.com/store/apps/details?id=com.conamobile.oynachi',
+        type: 'play',
+      },
+    ],
+  },
+  {
+    id: 'royal-taxi',
+    name: 'Royal Taxi',
+    tagline: 'City taxi-hailing app',
+    role: 'Android Developer',
+    period: 'Nov 2024 — Nov 2025',
+    description:
+      'A taxi-hailing app for everyday city rides — upfront fare pricing, live driver tracking, multiple tariffs and saved addresses. Built alongside Yalla as a second product on the same platform.',
+    highlights: [
+      'Upfront fare pricing',
+      'Live driver tracking on the map',
+      'Multiple tariffs & saved addresses',
+    ],
+    tech: ['Kotlin', 'Jetpack Compose', 'Clean Architecture', 'MVI'],
+    shots: ['royaltaxi-1.jpg', 'royaltaxi-2.jpg', 'royaltaxi-3.jpg', 'royaltaxi-4.jpg'],
+    display: 'image',
+    links: [
+      {
+        label: 'Google Play',
+        href: 'https://play.google.com/store/apps/details?id=uz.royal.taxi',
+        type: 'play',
+      },
+    ],
+  },
+];
+
+export const projectGroups = [
+  {
+    company: 'Romchi',
+    role: 'KMP Developer',
+    period: 'Nov 2025 — Present',
+    note: 'Kotlin Multiplatform products digitising the glass & window industry — shipped to Android and iOS from one codebase.',
+    projectIds: ['romchi', 'oynachi'],
+  },
+  {
+    company: 'Royal Taxi',
+    role: 'Android Developer',
+    period: 'Nov 2024 — Nov 2025',
+    note: 'Two taxi-hailing apps for the Uzbek market, built on a shared ride-hailing platform.',
+    projectIds: ['yalla', 'royal-taxi'],
+  },
+  {
+    company: 'Freelance & Independent',
+    role: 'Android & iOS Developer',
+    period: '2023 — 2024',
+    note: 'Client and contract apps delivered end-to-end — from first commit to store release.',
+    projectIds: ['glogistics', 'yestms', 'muallimi-soniy'],
+  },
 ];
 
 export type Job = {
@@ -250,11 +340,11 @@ export const experience: Job[] = [
   },
   {
     role: 'Android Developer',
-    company: 'YouCloud — Yalla',
+    company: 'Royal Taxi',
     location: 'Fergana, Uzbekistan',
     period: 'Nov 2024 — Nov 2025',
     blurb:
-      'Built core features of a taxi-hailing super-app, helping reach 50,000+ active users and launching combined Taxi + Delivery functionality.',
+      'Built core features for two taxi-hailing apps — Yalla and Royal Taxi — helping reach 50,000+ active users with real-time tracking and upfront fare pricing.',
   },
   {
     role: 'Android Developer',
