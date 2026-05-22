@@ -19,9 +19,11 @@ const linkIcon: Record<string, string> = {
   web: 'external',
 };
 
-// use a real screenshot only when the file is actually present
-const hasShot = (shot?: string) =>
-  !!shot && fs.existsSync(`public/images/projects/${shot}`);
+// keep only screenshots that actually exist on disk
+const resolveShots = (p: { shot?: string; shots?: string[] }): string[] =>
+  (p.shots ?? (p.shot ? [p.shot] : [])).filter((s) =>
+    fs.existsSync(`public/images/projects/${s}`)
+  );
 ---
 
 <Section
@@ -36,12 +38,13 @@ const hasShot = (shot?: string) =>
       projects.map((p, i) => {
         const reversed = i % 2 === 1;
         const color = colors[p.id] ?? '#6366f1';
+        const shots = resolveShots(p);
         return (
           <article class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            {/* phone */}
+            {/* phone + screenshot switcher */}
             <div
               class:list={[
-                'reveal flex justify-center',
+                'reveal flex flex-col items-center gap-5',
                 reversed ? 'lg:order-2' : 'lg:order-1',
               ]}
             >
@@ -49,8 +52,33 @@ const hasShot = (shot?: string) =>
                 name={p.name}
                 color={color}
                 tagline={p.tagline}
-                shot={hasShot(p.shot) ? p.shot : undefined}
+                shot={shots[0]}
+                imgId={`shot-${p.id}`}
               />
+              {shots.length > 1 && (
+                <div class="flex flex-wrap justify-center gap-2" data-thumbs>
+                  {shots.map((s, idx) => (
+                    <button
+                      type="button"
+                      data-target={`shot-${p.id}`}
+                      data-src={`/images/projects/${s}`}
+                      aria-label={`Show ${p.name} screenshot ${idx + 1}`}
+                      class:list={[
+                        'h-[4.8rem] w-[2.3rem] overflow-hidden rounded-md border border-line opacity-50 transition-all duration-200 hover:opacity-100',
+                        '[&.is-active]:border-accent [&.is-active]:opacity-100 [&.is-active]:ring-1 [&.is-active]:ring-accent',
+                        idx === 0 && 'is-active',
+                      ]}
+                    >
+                      <img
+                        src={`/images/projects/${s}`}
+                        alt=""
+                        loading="lazy"
+                        class="h-full w-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* copy */}
@@ -138,3 +166,19 @@ const hasShot = (shot?: string) =>
     }
   </div>
 </Section>
+
+<script>
+  // screenshot switcher: clicking a thumbnail swaps the phone image
+  document.querySelectorAll<HTMLElement>('[data-thumbs]').forEach((group) => {
+    const thumbs = group.querySelectorAll<HTMLElement>('[data-target]');
+    thumbs.forEach((t) => {
+      t.addEventListener('click', () => {
+        const img = document.getElementById(
+          t.dataset.target || ''
+        ) as HTMLImageElement | null;
+        if (img && t.dataset.src) img.src = t.dataset.src;
+        thumbs.forEach((x) => x.classList.toggle('is-active', x === t));
+      });
+    });
+  });
+</script>

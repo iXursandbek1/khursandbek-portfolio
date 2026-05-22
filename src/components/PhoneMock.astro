@@ -7,8 +7,9 @@ interface Props {
   color: string;
   tagline?: string;
   shot?: string;
+  imgId?: string;
 }
-const { name, color, tagline = '', shot } = Astro.props;
+const { name, color, tagline = '', shot, imgId } = Astro.props;
 const initial = name.charAt(0);
 ---
 
@@ -34,11 +35,12 @@ const initial = name.charAt(0);
       {
         shot ? (
           <img
+            id={imgId}
             src={`/images/projects/${shot}`}
             alt={`${name} app screenshot`}
             loading="lazy"
             decoding="async"
-            class="h-full w-full object-cover"
+            class="h-full w-full object-cover transition-opacity duration-300"
           />
         ) : (
           <div class="flex h-full flex-col">

@@ -81,8 +81,9 @@ export type Project = {
   featured?: boolean;
   award?: boolean;
   note?: string;
-  /* screenshot file in /public/images/projects (optional) */
+  /* screenshot file(s) in /public/images/projects (optional) */
   shot?: string;
+  shots?: string[];
   links: { label: string; href: string; type: 'play' | 'apple' | 'web' }[];
 };
 
@@ -90,19 +91,20 @@ export const projects: Project[] = [
   {
     id: 'romchi',
     name: 'Romchi',
-    tagline: 'AI-powered B2B distribution platform',
+    tagline: 'The operating system for window & door workshops',
     role: 'KMP Developer',
     period: 'Nov 2025 — Present',
     featured: true,
     award: true,
     description:
-      'A full-scale B2B distribution platform for glass and window manufacturers — orders, real-time pricing, warehouse and employee management, and dealer mapping. Built with Kotlin Multiplatform and Compose Multiplatform to ship one codebase to Android and iOS.',
+      'Romchi turns a window-and-door workshop into a digital operation — visual product templates, custom drawings, instant pricing with full cost breakdowns, and orders managed through a built-in CRM. Built with Kotlin Multiplatform and Compose Multiplatform to ship one codebase to Android and iOS.',
     highlights: [
-      'AI-powered customer-support chat',
+      'Cuts order quoting from ~3 hours to ~5 minutes',
+      '16K+ monthly active users · 4.7★ on Google Play',
+      'Visual window & door template & drawing builder',
+      'Instant pricing with full material cost breakdown',
+      'Built-in CRM for orders, customers & spending',
       'In-app payments & PDF invoice generation',
-      'AR product visualization',
-      'ML Kit OCR document capture with CameraX',
-      'Subscription tiers via Google Play Billing',
     ],
     tech: [
       'Kotlin Multiplatform',
@@ -113,7 +115,7 @@ export const projects: Project[] = [
       'Firebase',
       'KVault',
     ],
-    shot: 'romchi.png',
+    shots: ['romchi-1.png', 'romchi-2.png', 'romchi-3.png', 'romchi-4.png', 'romchi-5.png'],
     links: [
       { label: 'romchi.uz', href: 'https://romchi.uz/download', type: 'web' },
     ],
