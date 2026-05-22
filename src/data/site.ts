@@ -22,6 +22,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/khursandbek-kambaraliyev',
   github: 'https://github.com/khursandbek',
   cv: '/Khursandbek_Kambaraliyev_CV.pdf',
+  photo: '/images/portrait.jpg',
 };
 
 export const meta = {
@@ -170,7 +171,13 @@ export const projects: Project[] = [
       'Managed the full Play Store release',
     ],
     tech: ['Kotlin', 'Jetpack Compose', 'Koin', 'Ktor'],
-    shot: 'glogistics.png',
+    shots: [
+      'glogistics-1.jpg',
+      'glogistics-2.jpg',
+      'glogistics-3.jpg',
+      'glogistics-4.jpg',
+      'glogistics-5.jpg',
+    ],
     links: [
       {
         label: 'Google Play',
@@ -225,7 +232,13 @@ export const projects: Project[] = [
     ],
     tech: ['Swift', 'UIKit', 'Core Data'],
     note: 'App Store listing no longer public',
-    shot: 'muallimi.png',
+    shots: [
+      'muallimi-1.jpg',
+      'muallimi-2.jpg',
+      'muallimi-3.jpg',
+      'muallimi-4.jpg',
+      'muallimi-5.jpg',
+    ],
     links: [],
   },
   {
