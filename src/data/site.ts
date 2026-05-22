@@ -1,0 +1,311 @@
+/* ============================================================================
+   SITE CONTENT — edit everything here to update the website copy.
+   ========================================================================== */
+
+export const profile = {
+  name: 'Khursandbek Kambaraliyev',
+  firstName: 'Khursandbek',
+  role: 'Android & KMP Developer',
+  tagline:
+    'I build production mobile apps for Android and iOS — shipping a single Kotlin Multiplatform codebase to both stores.',
+  location: 'Tashkent, Uzbekistan',
+  available: true,
+  summary: [
+    'Mobile developer with 3+ years of hands-on experience building and publishing apps on Google Play and the App Store.',
+    'I specialise in Kotlin Multiplatform and Compose Multiplatform — sharing one codebase across Android and iOS — with deep roots in native Android (Kotlin, Jetpack Compose) and native iOS (Swift, SwiftUI).',
+    'I care about clean architecture, smooth UX, and shipping. Graduated with Honors (GPA 4.97 / 5.00).',
+  ],
+  email: 'kambaraliyevk@gmail.com',
+  phone: '+998 90 148 52 42',
+  phoneHref: 'tel:+998901485242',
+  /* TODO: replace with your real profile URLs */
+  linkedin: 'https://www.linkedin.com/in/khursandbek-kambaraliyev',
+  github: 'https://github.com/khursandbek',
+  cv: '/Khursandbek_Kambaraliyev_CV.pdf',
+};
+
+export const meta = {
+  title: 'Khursandbek Kambaraliyev — Android & KMP Developer',
+  description:
+    'Portfolio of Khursandbek Kambaraliyev — Android & Kotlin Multiplatform developer from Tashkent. Award-winning apps on Google Play and the App Store.',
+};
+
+export const stats = [
+  { value: '3+', label: 'Years building apps' },
+  { value: '7', label: 'Apps shipped to stores' },
+  { value: '50K+', label: 'Users reached' },
+  { value: '$100K', label: 'President Tech Award' },
+];
+
+export const navLinks = [
+  { href: '#about', label: 'About' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Work' },
+  { href: '#awards', label: 'Awards' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#contact', label: 'Contact' },
+];
+
+export const skillGroups = [
+  { title: 'Languages', items: ['Kotlin', 'Swift'] },
+  {
+    title: 'UI Toolkits',
+    items: ['Jetpack Compose', 'Compose Multiplatform', 'SwiftUI', 'UIKit'],
+  },
+  { title: 'Cross-Platform', items: ['Kotlin Multiplatform', 'KMM'] },
+  { title: 'Architecture', items: ['Clean Architecture', 'MVI', 'MVVM'] },
+  {
+    title: 'Networking',
+    items: ['Ktor', 'Retrofit', 'WebSockets', 'kotlinx.serialization'],
+  },
+  {
+    title: 'Data & DI',
+    items: ['Koin', 'Room', 'KVault', 'Coroutines', 'Core Data'],
+  },
+  {
+    title: 'Platform & ML',
+    items: ['Firebase', 'ML Kit', 'CameraX', 'Play Billing', 'Maps Compose'],
+  },
+  { title: 'Tooling & CI', items: ['GitHub Actions', 'Fastlane', 'Gradle', 'Git'] },
+];
+
+export type Project = {
+  id: string;
+  name: string;
+  tagline: string;
+  role: string;
+  period: string;
+  description: string;
+  highlights: string[];
+  tech: string[];
+  featured?: boolean;
+  award?: boolean;
+  note?: string;
+  /* screenshot file in /public/images/projects (optional) */
+  shot?: string;
+  links: { label: string; href: string; type: 'play' | 'apple' | 'web' }[];
+};
+
+export const projects: Project[] = [
+  {
+    id: 'romchi',
+    name: 'Romchi',
+    tagline: 'AI-powered B2B distribution platform',
+    role: 'KMP Developer',
+    period: 'Nov 2025 — Present',
+    featured: true,
+    award: true,
+    description:
+      'A full-scale B2B distribution platform for glass and window manufacturers — orders, real-time pricing, warehouse and employee management, and dealer mapping. Built with Kotlin Multiplatform and Compose Multiplatform to ship one codebase to Android and iOS.',
+    highlights: [
+      'AI-powered customer-support chat',
+      'In-app payments & PDF invoice generation',
+      'AR product visualization',
+      'ML Kit OCR document capture with CameraX',
+      'Subscription tiers via Google Play Billing',
+    ],
+    tech: [
+      'Kotlin Multiplatform',
+      'Compose Multiplatform',
+      'Ktor 3',
+      'Koin',
+      'Room',
+      'Firebase',
+      'KVault',
+    ],
+    shot: 'romchi.png',
+    links: [
+      { label: 'romchi.uz', href: 'https://romchi.uz/download', type: 'web' },
+    ],
+  },
+  {
+    id: 'yalla',
+    name: 'Yalla',
+    tagline: 'Taxi & delivery super-app',
+    role: 'Android Developer',
+    period: 'Nov 2024 — Nov 2025',
+    featured: true,
+    description:
+      'Core features for a taxi-hailing super-app that reached 50,000+ active users in its first quarter. Real-time ride tracking, optimized ride-matching, and a combined Taxi + Delivery experience.',
+    highlights: [
+      '50,000+ active users in the first quarter',
+      'Real-time tracking & ride-matching',
+      'Super App: Taxi + Delivery launch',
+      'CI/CD with GitHub Actions & Fastlane',
+    ],
+    tech: [
+      'Kotlin',
+      'Jetpack Compose',
+      'Clean Architecture',
+      'MVI',
+      'Firebase Crashlytics',
+    ],
+    shot: 'yalla.png',
+    links: [
+      {
+        label: 'Google Play',
+        href: 'https://play.google.com/store/apps/details?id=uz.yalla.client',
+        type: 'play',
+      },
+    ],
+  },
+  {
+    id: 'glogistics',
+    name: 'G.Logistics',
+    tagline: 'Logistics management app',
+    role: 'Android Developer',
+    period: 'Mar 2024 — Dec 2024',
+    description:
+      'An end-to-end logistics management app built solo — from first commit to Play Store release. Order tracking, delivery updates, and real-time notifications driven by client specifications.',
+    highlights: [
+      'Built solo from scratch to release',
+      'Order tracking & delivery updates',
+      'Real-time push notifications',
+      'Managed the full Play Store release',
+    ],
+    tech: ['Kotlin', 'Jetpack Compose', 'Koin', 'Ktor'],
+    shot: 'glogistics.png',
+    links: [
+      {
+        label: 'Google Play',
+        href: 'https://play.google.com/store/apps/details?id=uz.khursandbek.glogistics',
+        type: 'play',
+      },
+    ],
+  },
+  {
+    id: 'yestms',
+    name: 'YES TMS',
+    tagline: 'Real-time driver & logistics app',
+    role: 'Android Developer · Upwork',
+    period: 'Mar 2024 — Nov 2024',
+    description:
+      'A real-time logistics app for drivers with live tracking and delivery updates. Delivered for an international client on Upwork and rated 5 stars for timely, high-quality work.',
+    highlights: [
+      'WebSockets live driver tracking',
+      'ML document scanning cut manual errors by 30%',
+      'Low-latency sync for 500+ daily users',
+      '5-star Upwork client rating',
+    ],
+    tech: ['Kotlin', 'Jetpack Compose', 'WebSockets', 'Google Vision API'],
+    shot: 'yestms.png',
+    links: [
+      {
+        label: 'Google Play',
+        href: 'https://play.google.com/store/apps/details?id=com.yestms.driver',
+        type: 'play',
+      },
+    ],
+  },
+  {
+    id: 'muallimi-soniy',
+    name: 'Muallimi Soniy',
+    tagline: 'Native iOS learning app',
+    role: 'Mobile App Developer',
+    period: 'Nov 2023 — Feb 2024',
+    description:
+      'A native iOS app with a modern UI/UX, published to the App Store with a 4.0+ star rating. Built with Swift and UIKit, with designer-collaborated animations for engagement.',
+    highlights: [
+      'Published to the App Store, 4.0+ rating',
+      'Swift, UIKit & Core Data',
+      'Designer-collaborated animations',
+    ],
+    tech: ['Swift', 'UIKit', 'Core Data'],
+    note: 'App Store listing no longer public',
+    shot: 'muallimi.png',
+    links: [],
+  },
+];
+
+export type Job = {
+  role: string;
+  company: string;
+  location: string;
+  period: string;
+  blurb: string;
+  type?: 'internship';
+};
+
+export const experience: Job[] = [
+  {
+    role: 'KMP Developer',
+    company: 'Romchi',
+    location: 'Tashkent, Uzbekistan',
+    period: 'Nov 2025 — Present',
+    blurb:
+      'Shipping production Kotlin Multiplatform apps for Android and iOS with Compose Multiplatform, on a shared Ktor / Koin / Room foundation.',
+  },
+  {
+    role: 'Android Developer',
+    company: 'YouCloud — Yalla',
+    location: 'Fergana, Uzbekistan',
+    period: 'Nov 2024 — Nov 2025',
+    blurb:
+      'Built core features of a taxi-hailing super-app, helping reach 50,000+ active users and launching combined Taxi + Delivery functionality.',
+  },
+  {
+    role: 'Android Developer',
+    company: 'G.Logistics',
+    location: 'Remote',
+    period: 'Mar 2024 — Dec 2024',
+    blurb:
+      'Independently developed a logistics management app from scratch to Play Store submission, owning networking, releases and compliance.',
+  },
+  {
+    role: 'Android Developer',
+    company: 'YES TMS · Upwork',
+    location: 'Remote',
+    period: 'Mar 2024 — Nov 2024',
+    blurb:
+      'Delivered a real-time logistics app with WebSockets tracking and ML document scanning for an international client — earning a 5-star rating.',
+  },
+  {
+    role: 'Mobile App Developer',
+    company: 'Muallimi Soniy',
+    location: 'Tashkent, Uzbekistan',
+    period: 'Nov 2023 — Feb 2024',
+    blurb:
+      'Developed and published a native iOS app with Swift and UIKit, achieving a 4.0+ star rating on the App Store.',
+  },
+  {
+    role: 'Mobile App Developer',
+    company: 'UZAUTOMOTORS',
+    location: 'Andijan, Uzbekistan',
+    period: 'Jan 2023 — Jul 2023',
+    type: 'internship',
+    blurb:
+      'Internship: contributed to Android and iOS app development with Kotlin and Swift, working with REST APIs, debugging and deployment.',
+  },
+];
+
+export const awards = {
+  headline: {
+    title: 'President Tech Award — 1st Place',
+    project: 'Romchi',
+    prize: '$100,000',
+    category: 'Micro-SaaS & AdTech',
+    organizers: 'Digital.uz · IT Park Uzbekistan',
+    description:
+      'Romchi took 1st place at the President Tech Award Grand Final, recognised for its technological solutions in the Micro-SaaS & AdTech field — and awarded a $100,000 prize.',
+  },
+  /* photos live in /public/images/awards — add more as you send them */
+  gallery: [
+    {
+      src: '/images/awards/certificate.jpeg',
+      alt: 'Romchi — 1st place, $100,000 President Tech Award certificate',
+      caption: '1st place — $100,000 prize',
+    },
+    {
+      src: '/images/awards/badge.jpg',
+      alt: 'President Tech Award Grand Final participant badge — Romchi Team',
+      caption: 'President Tech Award · Grand Final',
+    },
+  ],
+};
+
+export const education = {
+  degree: "Bachelor's Degree",
+  place: 'Andijan, Uzbekistan',
+  honors: 'Graduated with Honors',
+  gpa: '4.97 / 5.00',
+};

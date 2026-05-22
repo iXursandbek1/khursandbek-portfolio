@@ -1,0 +1,159 @@
+---
+import Icon from './Icon.astro';
+import { navLinks, profile } from '../data/site';
+---
+
+<header id="site-nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
+    <!-- monogram -->
+    <a
+      href="#top"
+      class="group flex items-center gap-2.5 rounded-lg"
+      aria-label={`${profile.name} — home`}
+    >
+      <span
+        class="grid h-9 w-9 place-items-center rounded-lg border border-line bg-elevated text-sm font-bold text-accent-soft transition-colors group-hover:border-accent/60"
+        >K</span
+      >
+      <span class="hidden text-sm font-semibold tracking-tight text-ink sm:block"
+        >{profile.firstName}<span class="text-ink-muted">.dev</span></span
+      >
+    </a>
+
+    <!-- desktop links -->
+    <div
+      class="glass hidden items-center gap-1 rounded-full px-2 py-1.5 md:flex"
+    >
+      {
+        navLinks.map((l) => (
+          <a
+            href={l.href}
+            data-navlink
+            class="rounded-full px-3.5 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:text-ink"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={profile.cv}
+        download
+        class="hidden items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-bg transition-transform duration-200 hover:scale-[1.03] sm:inline-flex"
+      >
+        <Icon name="download" size={16} />
+        Résumé
+      </a>
+
+      <!-- mobile toggle -->
+      <button
+        id="menu-btn"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        class="glass grid h-10 w-10 place-items-center rounded-lg text-ink md:hidden"
+      >
+        <Icon name="menu" size={20} class="menu-open" />
+        <Icon name="close" size={20} class="menu-close hidden" />
+      </button>
+    </div>
+  </nav>
+
+  <!-- mobile menu -->
+  <div
+    id="mobile-menu"
+    class="glass mx-4 hidden overflow-hidden rounded-2xl md:hidden"
+  >
+    <div class="flex flex-col p-3">
+      {
+        navLinks.map((l) => (
+          <a
+            href={l.href}
+            data-mobilelink
+            class="rounded-lg px-4 py-3 text-base font-medium text-ink-soft transition-colors hover:bg-white/5 hover:text-ink"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a
+        href={profile.cv}
+        download
+        class="mt-1 flex items-center justify-center gap-2 rounded-lg bg-ink px-4 py-3 text-base font-semibold text-bg"
+      >
+        <Icon name="download" size={18} />
+        Download Résumé
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById('site-nav');
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const openIco = document.querySelector('.menu-open');
+  const closeIco = document.querySelector('.menu-close');
+
+  // glass background after scrolling
+  const onScroll = () => {
+    if (window.scrollY > 24) nav?.classList.add('nav-scrolled');
+    else nav?.classList.remove('nav-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // mobile menu
+  const setMenu = (open: boolean) => {
+    menu?.classList.toggle('hidden', !open);
+    btn?.setAttribute('aria-expanded', String(open));
+    openIco?.classList.toggle('hidden', open);
+    closeIco?.classList.toggle('hidden', !open);
+  };
+  btn?.addEventListener('click', () =>
+    setMenu(menu?.classList.contains('hidden') ?? true)
+  );
+  document
+    .querySelectorAll('[data-mobilelink]')
+    .forEach((a) => a.addEventListener('click', () => setMenu(false)));
+
+  // active section highlighting
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-navlink]')];
+  const sections = links
+    .map((l) => document.querySelector(l.getAttribute('href') || ''))
+    .filter(Boolean) as Element[];
+
+  if ('IntersectionObserver' in window) {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            links.forEach((l) =>
+              l.classList.toggle(
+                'navlink-active',
+                l.getAttribute('href') === '#' + e.target.id
+              )
+            );
+          }
+        }
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    sections.forEach((s) => spy.observe(s));
+  }
+</script>
+
+<style>
+  .nav-scrolled nav {
+    background: rgba(9, 9, 11, 0.7);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border-bottom: 1px solid var(--color-line);
+  }
+  :global([data-navlink].navlink-active) {
+    color: var(--color-ink);
+    background: rgba(255, 255, 255, 0.06);
+  }
+</style>

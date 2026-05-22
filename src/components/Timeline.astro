@@ -1,0 +1,72 @@
+---
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import { experience } from '../data/site';
+---
+
+<Section
+  id="experience"
+  eyebrow="Career"
+  icon="briefcase"
+  title="Experience"
+  subtitle="Roles across KMP, native Android and iOS — from internship to award-winning product work."
+>
+  <div class="relative">
+    <!-- spine -->
+    <div
+      class="absolute bottom-2 left-[7px] top-2 w-px bg-gradient-to-b from-accent via-accent/30 to-transparent sm:left-[9px]"
+    >
+    </div>
+
+    <ol>
+      {
+        experience.map((job, i) => (
+          <li class="reveal relative pb-8 pl-9 last:pb-0 sm:pl-14" data-delay={Math.min(i, 3)}>
+            {/* node */}
+            <span
+              class:list={[
+                'absolute left-0 top-1.5 grid place-items-center rounded-full',
+                i === 0 ? 'h-[15px] w-[15px]' : 'h-[15px] w-[15px]',
+              ]}
+            >
+              <span
+                class:list={[
+                  'h-[15px] w-[15px] rounded-full border-2',
+                  i === 0
+                    ? 'border-accent bg-accent anim-pulse'
+                    : 'border-line-strong bg-elevated',
+                ]}
+              />
+              {i === 0 && (
+                <span class="absolute inline-flex h-[15px] w-[15px] animate-ping rounded-full bg-accent opacity-60" />
+              )}
+            </span>
+
+            <div class="card p-5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h3 class="text-base font-semibold text-ink">{job.role}</h3>
+                <span class="font-mono text-xs text-ink-muted">{job.period}</span>
+              </div>
+
+              <div class="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                <span class="font-medium text-accent-soft">{job.company}</span>
+                <span class="text-ink-muted">·</span>
+                <span class="inline-flex items-center gap-1 text-ink-muted">
+                  <Icon name="map-pin" size={13} />
+                  {job.location}
+                </span>
+                {job.type === 'internship' && (
+                  <span class="rounded-md border border-line bg-white/5 px-2 py-0.5 text-[11px] font-medium text-ink-muted">
+                    Internship
+                  </span>
+                )}
+              </div>
+
+              <p class="mt-2.5 text-sm leading-relaxed text-ink-soft">{job.blurb}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</Section>

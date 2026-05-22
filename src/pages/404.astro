@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout title="Page not found — Khursandbek Kambaraliyev">
+  <main class="grid min-h-svh place-items-center px-6 text-center">
+    <div class="reveal in-view">
+      <p class="eyebrow justify-center">Error 404</p>
+      <h1
+        class="mt-4 text-[clamp(3.5rem,14vw,7rem)] font-bold leading-none tracking-tight text-gradient"
+      >
+        404
+      </h1>
+      <p class="mt-4 text-lg font-semibold text-ink">This page wandered off.</p>
+      <p class="mx-auto mt-2 max-w-sm text-sm text-ink-soft">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <a
+        href="/"
+        class="mt-7 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-2 px-5 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:scale-[1.03]"
+      >
+        <Icon name="arrow-up-right" size={16} />
+        Back to home
+      </a>
+    </div>
+  </main>
+</Layout>

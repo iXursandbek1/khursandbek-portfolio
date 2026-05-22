@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="b1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="name" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#c7c7ff"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="mono" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#09090b"/>
+  <circle cx="180" cy="120" r="380" fill="url(#b1)"/>
+  <circle cx="1050" cy="560" r="420" fill="url(#b2)"/>
+  <rect x="0" y="0" width="1200" height="630" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="2"/>
+
+  <!-- monogram -->
+  <g transform="translate(80,74)">
+    <rect width="60" height="60" rx="15" fill="#18181b" stroke="#6366f1" stroke-opacity="0.5" stroke-width="1.5"/>
+    <text x="30" y="42" font-family="Helvetica Neue, Arial, sans-serif" font-size="32" font-weight="700" fill="url(#mono)" text-anchor="middle">K</text>
+  </g>
+  <text x="156" y="113" font-family="Helvetica Neue, Arial, sans-serif" font-size="24" font-weight="600" fill="#a1a1aa">khursandbek<tspan fill="#52525b">.dev</tspan></text>
+
+  <!-- name -->
+  <text x="78" y="300" font-family="Helvetica Neue, Arial, sans-serif" font-size="104" font-weight="800" fill="url(#name)" letter-spacing="-3">Khursandbek</text>
+  <text x="78" y="412" font-family="Helvetica Neue, Arial, sans-serif" font-size="104" font-weight="800" fill="#fafafa" letter-spacing="-3">Kambaraliyev</text>
+
+  <!-- role -->
+  <text x="82" y="474" font-family="Helvetica Neue, Arial, sans-serif" font-size="33" font-weight="600" fill="#818cf8">Android &amp; KMP Developer</text>
+
+  <!-- award pill -->
+  <g transform="translate(80,512)">
+    <rect width="540" height="56" rx="28" fill="#f59e0b" fill-opacity="0.12" stroke="#f59e0b" stroke-opacity="0.35" stroke-width="1.5"/>
+    <path d="M34 16 l5.5 11 12 1.5 -9 8.5 2.5 12 -11 -6 -11 6 2.5 -12 -9 -8.5 12 -1.5 z" fill="#fcd34d"/>
+    <text x="66" y="36" font-family="Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="700" fill="#fcd34d">$100K President Tech Award — 1st Place</text>
+  </g>
+
+  <!-- tech tags -->
+  <text x="700" y="560" font-family="Helvetica Neue, Arial, sans-serif" font-size="21" font-weight="500" fill="#52525b" text-anchor="end">Kotlin · Compose · KMP · SwiftUI · Ktor</text>
+</svg>

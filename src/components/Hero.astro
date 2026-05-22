@@ -1,0 +1,144 @@
+---
+import Icon from './Icon.astro';
+import { profile, stats } from '../data/site';
+---
+
+<section
+  id="top"
+  class="relative mx-auto flex min-h-svh max-w-6xl flex-col justify-center px-5 pb-16 pt-32 sm:px-8 lg:pt-36"
+>
+  <div class="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+    <!-- ---------------------------------------------------------- copy -->
+    <div>
+      {
+        profile.available && (
+          <div
+            class="reveal glass mb-6 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium text-ink-soft"
+          >
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            Available for new opportunities
+          </div>
+        )
+      }
+
+      <h1
+        class="reveal text-[clamp(2.5rem,7vw,4.6rem)] font-bold leading-[1.04] tracking-tight"
+        data-delay="1"
+      >
+        <span class="text-gradient">{profile.firstName}</span><br />
+        <span class="text-ink">Kambaraliyev</span>
+      </h1>
+
+      <p
+        class="reveal mt-5 flex items-center gap-2.5 text-lg font-medium text-accent-soft"
+        data-delay="2"
+      >
+        <Icon name="layers" size={20} />
+        {profile.role}
+      </p>
+
+      <p
+        class="reveal mt-4 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg"
+        data-delay="3"
+      >
+        {profile.tagline}
+      </p>
+
+      <div class="reveal mt-8 flex flex-wrap items-center gap-3" data-delay="4">
+        <a
+          href="#projects"
+          class="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-2 px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_40px_-10px_rgba(99,102,241,0.8)] transition-transform duration-200 hover:scale-[1.03]"
+        >
+          View my work
+          <Icon
+            name="arrow-down"
+            size={16}
+            class="transition-transform duration-200 group-hover:translate-y-0.5"
+          />
+        </a>
+        <a
+          href={profile.cv}
+          download
+          class="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-ink transition-colors hover:border-line-strong"
+        >
+          <Icon name="download" size={16} />
+          Download Résumé
+        </a>
+      </div>
+
+      <p class="reveal mt-6 flex items-center gap-2 text-sm text-ink-muted" data-delay="5">
+        <Icon name="map-pin" size={15} />
+        {profile.location}
+      </p>
+    </div>
+
+    <!-- ---------------------------------------------------- code visual -->
+    <div class="reveal anim-float lg:justify-self-end" data-delay="2">
+      <div
+        class="card relative w-full max-w-md rotate-1 p-0 transition-transform duration-500 hover:rotate-0"
+      >
+        <div
+          class="absolute -inset-px -z-10 rounded-2xl bg-gradient-to-br from-accent/40 to-accent-2/30 opacity-60 blur-xl"
+        >
+        </div>
+        <!-- window chrome -->
+        <div class="flex items-center gap-2 border-b border-line px-4 py-3">
+          <span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span>
+          <span class="h-3 w-3 rounded-full bg-[#febc2e]"></span>
+          <span class="h-3 w-3 rounded-full bg-[#28c840]"></span>
+          <span class="ml-2 text-xs font-medium text-ink-muted">Developer.kt</span>
+        </div>
+        <!-- code -->
+        <pre class="overflow-x-auto px-5 py-4 text-[13px] leading-relaxed"><code><span class="c">// shipped to Android &amp; iOS</span>
+<span class="k">class</span> <span class="t">Khursandbek</span> : <span class="t">Multiplatform</span> &#123;
+
+  <span class="k">val</span> stack = <span class="fn">listOf</span>(
+    <span class="s">"Kotlin"</span>, <span class="s">"Compose"</span>,
+    <span class="s">"KMP"</span>, <span class="s">"SwiftUI"</span>, <span class="s">"Ktor"</span>,
+  )
+
+  <span class="k">override fun</span> <span class="fn">ship</span>() =
+    <span class="t">Platforms</span>.everywhere
+&#125;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- --------------------------------------------------------- stats -->
+  <div class="reveal mt-16 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4" data-delay="3">
+    {
+      stats.map((s) => (
+        <div class="glass rounded-xl px-4 py-5 text-center sm:px-5">
+          <div class="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+            {s.value}
+          </div>
+          <div class="mt-1 text-xs text-ink-muted sm:text-sm">{s.label}</div>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- scroll cue -->
+  <a
+    href="#about"
+    aria-label="Scroll to about"
+    class="mx-auto mt-12 hidden text-ink-muted transition-colors hover:text-ink-soft sm:block"
+  >
+    <Icon name="arrow-down" size={22} class="anim-bob" />
+  </a>
+</section>
+
+<style>
+  pre code {
+    font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', monospace;
+    color: #d4d4dd;
+  }
+  .c { color: #6b6b76; font-style: italic; }
+  .k { color: #c4b5fd; }
+  .t { color: #7dd3fc; }
+  .s { color: #86efac; }
+  .fn { color: #fcd34d; }
+</style>

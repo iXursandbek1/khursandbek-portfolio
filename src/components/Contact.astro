@@ -1,0 +1,103 @@
+---
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import { profile } from '../data/site';
+
+const methods = [
+  {
+    icon: 'mail',
+    label: 'Email',
+    value: profile.email,
+    href: `mailto:${profile.email}`,
+  },
+  {
+    icon: 'phone',
+    label: 'Phone',
+    value: profile.phone,
+    href: profile.phoneHref,
+  },
+  {
+    icon: 'linkedin',
+    label: 'LinkedIn',
+    value: 'Connect with me',
+    href: profile.linkedin,
+  },
+  {
+    icon: 'github',
+    label: 'GitHub',
+    value: 'See my code',
+    href: profile.github,
+  },
+];
+---
+
+<Section
+  id="contact"
+  eyebrow="Get in touch"
+  icon="mail"
+  title="Let's build something great"
+>
+  <!-- CTA card -->
+  <div class="card reveal relative overflow-hidden p-8 text-center sm:p-12">
+    <div
+      class="absolute -top-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full opacity-50 blur-3xl"
+      style="background:radial-gradient(circle,#6366f1,transparent 70%)"
+      aria-hidden="true"
+    >
+    </div>
+
+    <h3 class="mx-auto max-w-xl text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+      Have an app idea or a role to fill?
+    </h3>
+    <p class="mx-auto mt-3 max-w-lg text-base text-ink-soft">
+      I'm open to mobile development opportunities — full-time, contract or
+      freelance. Let's talk about what you're building.
+    </p>
+
+    <div class="mt-7 flex flex-wrap justify-center gap-3">
+      <a
+        href={`mailto:${profile.email}`}
+        class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-2 px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_40px_-10px_rgba(99,102,241,0.8)] transition-transform duration-200 hover:scale-[1.03]"
+      >
+        <Icon name="mail" size={17} />
+        Email me
+      </a>
+      <a
+        href={profile.cv}
+        download
+        class="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-line-strong"
+      >
+        <Icon name="download" size={17} />
+        Download Résumé
+      </a>
+    </div>
+  </div>
+
+  <!-- contact methods -->
+  <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      methods.map((m, i) => (
+        <a
+          href={m.href}
+          target={m.href.startsWith('http') ? '_blank' : undefined}
+          rel={m.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          class="card reveal group flex items-center gap-3.5 p-4"
+          data-delay={(i % 4) + 1}
+        >
+          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-line bg-elevated text-accent-soft transition-colors group-hover:border-accent/50">
+            <Icon name={m.icon} size={20} />
+          </span>
+          <span class="min-w-0">
+            <span class="block text-xs text-ink-muted">{m.label}</span>
+            <span class="block truncate text-sm font-medium text-ink">{m.value}</span>
+          </span>
+          <Icon
+            name="arrow-up-right"
+            size={16}
+            class="ml-auto text-ink-muted transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          />
+        </a>
+      ))
+    }
+  </div>
+</Section>

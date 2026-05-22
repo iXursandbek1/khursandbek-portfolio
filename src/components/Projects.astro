@@ -1,0 +1,140 @@
+---
+import fs from 'node:fs';
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import PhoneMock from './PhoneMock.astro';
+import { projects } from '../data/site';
+
+const colors: Record<string, string> = {
+  romchi: '#6366f1',
+  yalla: '#f59e0b',
+  glogistics: '#10b981',
+  yestms: '#0ea5e9',
+  'muallimi-soniy': '#14b8a6',
+};
+
+const linkIcon: Record<string, string> = {
+  play: 'google',
+  apple: 'apple',
+  web: 'external',
+};
+
+// use a real screenshot only when the file is actually present
+const hasShot = (shot?: string) =>
+  !!shot && fs.existsSync(`public/images/projects/${shot}`);
+---
+
+<Section
+  id="projects"
+  eyebrow="Work"
+  icon="rocket"
+  title="Selected projects"
+  subtitle="Production apps I've designed, built and shipped — from B2B platforms to taxi super-apps."
+>
+  <div class="space-y-20 sm:space-y-28">
+    {
+      projects.map((p, i) => {
+        const reversed = i % 2 === 1;
+        const color = colors[p.id] ?? '#6366f1';
+        return (
+          <article class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            {/* phone */}
+            <div
+              class:list={[
+                'reveal flex justify-center',
+                reversed ? 'lg:order-2' : 'lg:order-1',
+              ]}
+            >
+              <PhoneMock
+                name={p.name}
+                color={color}
+                tagline={p.tagline}
+                shot={hasShot(p.shot) ? p.shot : undefined}
+              />
+            </div>
+
+            {/* copy */}
+            <div
+              class:list={[
+                'reveal',
+                reversed ? 'lg:order-1' : 'lg:order-2',
+              ]}
+              data-delay="1"
+            >
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-mono text-sm text-ink-muted">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                {p.featured && (
+                  <span class="rounded-full border border-line bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-ink-soft">
+                    Featured
+                  </span>
+                )}
+                {p.award && (
+                  <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-2.5 py-0.5 text-[11px] font-semibold text-amber-300">
+                    <Icon name="trophy" size={13} />
+                    Award winner
+                  </span>
+                )}
+              </div>
+
+              <h3 class="mt-3 text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+                {p.name}
+              </h3>
+              <p class="text-base font-medium" style={`color:${color}`}>
+                {p.tagline}
+              </p>
+              <p class="mt-1 text-sm text-ink-muted">
+                {p.role} · {p.period}
+              </p>
+
+              <p class="mt-4 text-[15px] leading-relaxed text-ink-soft">
+                {p.description}
+              </p>
+
+              <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+                {p.highlights.map((h) => (
+                  <li class="flex items-start gap-2 text-sm text-ink-soft">
+                    <span
+                      class="mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full"
+                      style={`background:${color}22;color:${color}`}
+                    >
+                      <Icon name="check" size={11} />
+                    </span>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+
+              <div class="mt-5 flex flex-wrap gap-1.5">
+                {p.tech.map((t) => (
+                  <span class="rounded-md border border-line bg-white/[0.03] px-2 py-1 text-xs font-medium text-ink-muted">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <div class="mt-6 flex flex-wrap items-center gap-2.5">
+                {p.links.map((l) => (
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-ink transition-colors hover:border-line-strong"
+                  >
+                    <Icon name={linkIcon[l.type]} size={16} />
+                    {l.label}
+                    <Icon name="arrow-up-right" size={14} class="text-ink-muted" />
+                  </a>
+                ))}
+                {p.note && (
+                  <span class="text-xs italic text-ink-muted">{p.note}</span>
+                )}
+              </div>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</Section>

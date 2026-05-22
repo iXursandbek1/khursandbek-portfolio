@@ -1,0 +1,102 @@
+---
+import '../styles/global.css';
+import { meta, profile } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = meta.title, description = meta.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#09090b" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/og.png" />
+
+    <!-- Structured data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: profile.name,
+        jobTitle: profile.role,
+        email: `mailto:${profile.email}`,
+        address: { '@type': 'PostalAddress', addressLocality: profile.location },
+        url: canonical,
+        sameAs: [profile.linkedin, profile.github],
+      })}
+    />
+  </head>
+  <body>
+    <!-- ambient cinematic background -->
+    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div
+        class="blob anim-drift-1 anim-pulse"
+        style="width:46rem;height:46rem;top:-16rem;left:-12rem;background:radial-gradient(circle,#4f46e5,transparent 70%)"
+      >
+      </div>
+      <div
+        class="blob anim-drift-2 anim-pulse"
+        style="width:40rem;height:40rem;top:18rem;right:-14rem;background:radial-gradient(circle,#7c3aed,transparent 70%)"
+      >
+      </div>
+      <div
+        class="blob anim-drift-1"
+        style="width:34rem;height:34rem;bottom:-14rem;left:30%;background:radial-gradient(circle,#6366f1,transparent 70%);opacity:0.32"
+      >
+      </div>
+      <div class="grid-bg absolute inset-x-0 top-0 h-[60rem]"></div>
+    </div>
+
+    <slot />
+
+    <!-- scroll-reveal: progressively enhances; content is visible without JS -->
+    <script>
+      const reveals = document.querySelectorAll<HTMLElement>('.reveal');
+      if (
+        'IntersectionObserver' in window &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add('in-view');
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        );
+        reveals.forEach((el) => io.observe(el));
+      } else {
+        reveals.forEach((el) => el.classList.add('in-view'));
+      }
+    </script>
+  </body>
+</html>
