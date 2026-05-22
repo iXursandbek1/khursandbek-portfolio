@@ -84,6 +84,9 @@ export type Project = {
   /* screenshot file(s) in /public/images/projects (optional) */
   shot?: string;
   shots?: string[];
+  /* 'mock' = render inside the CSS phone (clean screenshots);
+     'image' = show the image directly (pre-composed store graphics) */
+  display?: 'mock' | 'image';
   links: { label: string; href: string; type: 'play' | 'apple' | 'web' }[];
 };
 
@@ -142,7 +145,8 @@ export const projects: Project[] = [
       'MVI',
       'Firebase Crashlytics',
     ],
-    shot: 'yalla.png',
+    shots: ['yalla-1.jpg', 'yalla-2.jpg', 'yalla-3.jpg', 'yalla-4.jpg'],
+    display: 'image',
     links: [
       {
         label: 'Google Play',
@@ -190,7 +194,14 @@ export const projects: Project[] = [
       '5-star Upwork client rating',
     ],
     tech: ['Kotlin', 'Jetpack Compose', 'WebSockets', 'Google Vision API'],
-    shot: 'yestms.png',
+    shots: [
+      'yestms-1.jpg',
+      'yestms-2.jpg',
+      'yestms-3.jpg',
+      'yestms-4.jpg',
+      'yestms-5.jpg',
+    ],
+    display: 'image',
     links: [
       {
         label: 'Google Play',

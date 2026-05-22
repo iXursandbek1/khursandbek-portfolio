@@ -48,13 +48,26 @@ const resolveShots = (p: { shot?: string; shots?: string[] }): string[] =>
                 reversed ? 'lg:order-2' : 'lg:order-1',
               ]}
             >
-              <PhoneMock
-                name={p.name}
-                color={color}
-                tagline={p.tagline}
-                shot={shots[0]}
-                imgId={`shot-${p.id}`}
-              />
+              {p.display === 'image' && shots.length > 0 ? (
+                <div class="w-full max-w-[290px] overflow-hidden rounded-[1.7rem] border border-line-strong bg-elevated shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]">
+                  <img
+                    id={`shot-${p.id}`}
+                    src={`/images/projects/${shots[0]}`}
+                    alt={`${p.name} app screenshot`}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full transition-opacity duration-300"
+                  />
+                </div>
+              ) : (
+                <PhoneMock
+                  name={p.name}
+                  color={color}
+                  tagline={p.tagline}
+                  shot={shots[0]}
+                  imgId={`shot-${p.id}`}
+                />
+              )}
               {shots.length > 1 && (
                 <div class="flex flex-wrap justify-center gap-2" data-thumbs>
                   {shots.map((s, idx) => (
