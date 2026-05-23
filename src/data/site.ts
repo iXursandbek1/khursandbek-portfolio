@@ -34,7 +34,7 @@ export const meta = {
 export const stats = [
   { value: '3+', label: 'Years building apps' },
   { value: '7', label: 'Apps shipped to stores' },
-  { value: '50K+', label: 'Users reached' },
+  { value: '150K+', label: 'Users reached' },
   { value: '$100K', label: 'President Tech Award' },
 ];
 
@@ -104,7 +104,7 @@ export const projects: Project[] = [
       'Romchi turns a window-and-door workshop into a digital operation — visual product templates, custom drawings, instant pricing with full cost breakdowns, and orders managed through a built-in CRM. Built with Kotlin Multiplatform and Compose Multiplatform to ship one codebase to Android and iOS.',
     highlights: [
       'Cuts order quoting from ~3 hours to ~5 minutes',
-      '16K+ monthly active users · 4.7★ on Google Play',
+      '50K+ monthly active users · 4.7★ on Google Play',
       'Visual window & door template & drawing builder',
       'Instant pricing with full material cost breakdown',
       'Built-in CRM for orders, customers & spending',
@@ -197,7 +197,7 @@ export const projects: Project[] = [
     highlights: [
       'WebSockets live driver tracking',
       'ML document scanning cut manual errors by 30%',
-      'Low-latency sync for 500+ daily users',
+      'Real-time low-latency sync across the driver fleet',
       '5-star Upwork client rating',
     ],
     tech: ['Kotlin', 'Jetpack Compose', 'WebSockets', 'Google Vision API'],
@@ -292,8 +292,8 @@ export const projects: Project[] = [
     description:
       'A taxi-hailing app for everyday city rides — upfront fare pricing, live driver tracking, multiple tariffs and saved addresses. Built alongside Yalla as a second product on the same platform.',
     highlights: [
-      'Upfront fare pricing',
-      'Live driver tracking on the map',
+      '100K+ downloads on Google Play',
+      'Upfront fare pricing & live driver tracking',
       'Multiple tariffs & saved addresses',
     ],
     tech: ['Kotlin', 'Jetpack Compose', 'Clean Architecture', 'MVI'],
