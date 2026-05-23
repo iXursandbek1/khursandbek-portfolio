@@ -153,6 +153,19 @@ const resolveShots = (p: Project): string[] =>
                     <p class="text-sm leading-relaxed text-ink-soft">
                       {p.description}
                     </p>
+                    {p.highlights && p.highlights.length > 0 && (
+                      <ul class="space-y-1.5">
+                        {p.highlights.slice(0, 3).map((h) => (
+                          <li class="flex items-start gap-2 text-sm leading-snug text-ink-soft">
+                            <span
+                              class="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full"
+                              style={`background:${color}`}
+                            />
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                     <div class="flex flex-wrap gap-1.5">
                       {p.tech.slice(0, 6).map((t) => (
                         <span class="rounded border border-line bg-white/[0.03] px-2 py-0.5 text-[11px] font-medium text-ink-muted">
