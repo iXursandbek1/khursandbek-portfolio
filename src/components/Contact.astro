@@ -17,6 +17,12 @@ const methods = [
     href: profile.phoneHref,
   },
   {
+    icon: 'telegram',
+    label: 'Telegram',
+    value: '@iXursandbek',
+    href: profile.telegram,
+  },
+  {
     icon: 'linkedin',
     label: 'LinkedIn',
     value: 'Connect with me',
@@ -74,7 +80,7 @@ const methods = [
   </div>
 
   <!-- contact methods -->
-  <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
     {
       methods.map((m, i) => (
         <a
@@ -82,7 +88,7 @@ const methods = [
           target={m.href.startsWith('http') ? '_blank' : undefined}
           rel={m.href.startsWith('http') ? 'noopener noreferrer' : undefined}
           class="card reveal group flex items-center gap-3.5 p-4"
-          data-delay={(i % 4) + 1}
+          data-delay={(i % 5) + 1}
         >
           <span class="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-line bg-elevated text-accent-soft transition-colors group-hover:border-accent/50">
             <Icon name={m.icon} size={20} />

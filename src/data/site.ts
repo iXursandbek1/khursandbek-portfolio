@@ -21,6 +21,7 @@ export const profile = {
   /* TODO: replace with your real profile URLs */
   linkedin: 'https://www.linkedin.com/in/khursandbek-kambaraliyev',
   github: 'https://github.com/khursandbek',
+  telegram: 'https://t.me/iXursandbek',
   cv: '/Khursandbek_Kambaraliyev_CV.pdf',
   photo: '/images/portrait.jpg',
 };
